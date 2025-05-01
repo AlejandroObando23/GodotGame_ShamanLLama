@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dobevgoxjt6do"]
+
+[ext_resource type="Texture2D" uid="uid://bitmw3g6ex6y" path="res://images/barra_ataque.png" id="1_200ud"]
+[ext_resource type="Texture2D" uid="uid://byssukgdusfhf" path="res://images/barra_verificadora.png" id="2_f5y2q"]
+[ext_resource type="Script" path="res://Escenas/EscenaTwo/barra_identificar.gd" id="3_g5832"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8547x"]
+size = Vector2(101, 20)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 263.0
+offset_top = 46.0
+offset_right = 263.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="barra_vida" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(1, 0.601504)
+texture = ExtResource("1_200ud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barra_vida"]
+position = Vector2(40.5, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_8547x")
+
+[node name="barra_identificar" type="Sprite2D" parent="."]
+position = Vector2(-230, -4.76837e-07)
+scale = Vector2(0.5, 0.496241)
+texture = ExtResource("2_f5y2q")
+script = ExtResource("3_g5832")

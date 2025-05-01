@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://d8sx301hc17v"]
+
+[ext_resource type="Texture2D" uid="uid://1s8p41jsktcw" path="res://images/cartas/carta_azul-removebg-preview.png" id="1_ci7c0"]
+[ext_resource type="Script" path="res://cartas/script_cartas.gd" id="1_e3y3n"]
+[ext_resource type="Texture2D" uid="uid://cyjmk1hqq8ywf" path="res://images/cartas/carta_morada-removebg-preview.png" id="2_hrguj"]
+[ext_resource type="Texture2D" uid="uid://b2530rj06imsf" path="res://images/cartas/rect_verde-removebg-preview.png" id="3_wd26k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qn2c8"]
+size = Vector2(151, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64l8y"]
+size = Vector2(154, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udspq"]
+size = Vector2(145, 224)
+
+[node name="Cartas" type="Node2D"]
+script = ExtResource("1_e3y3n")
+
+[node name="carta_azul" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="carta_azul"]
+position = Vector2(121, -9)
+texture = ExtResource("1_ci7c0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="carta_azul"]
+position = Vector2(123, -11)
+shape = SubResource("RectangleShape2D_qn2c8")
+
+[node name="carta_morada" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="carta_morada"]
+position = Vector2(-74.5, -7)
+scale = Vector2(0.474, 0.536)
+texture = ExtResource("2_hrguj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="carta_morada"]
+position = Vector2(-74, -2)
+shape = SubResource("RectangleShape2D_64l8y")
+
+[node name="carta_verde" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="carta_verde"]
+position = Vector2(313.25, -16.25)
+scale = Vector2(1.01111, 1.18889)
+texture = ExtResource("3_wd26k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="carta_verde"]
+position = Vector2(313.5, -16)
+shape = SubResource("RectangleShape2D_udspq")
+
+[connection signal="input_event" from="carta_azul" to="." method="_on_carta_azul_input_event"]
+[connection signal="input_event" from="carta_morada" to="." method="_on_carta_morada_input_event"]
+[connection signal="input_event" from="carta_verde" to="." method="_on_carta_verde_input_event"]

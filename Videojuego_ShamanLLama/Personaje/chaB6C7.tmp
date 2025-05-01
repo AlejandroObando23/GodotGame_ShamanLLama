@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://drlgq2sbyh287"]
+
+[ext_resource type="Script" path="res://Personaje/script/character.Scriptgd.gd" id="1_cic3v"]
+[ext_resource type="Texture2D" uid="uid://tnxp33tgd7mg" path="res://images/cubo_blanco_2d.png" id="1_xw6pr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p088t"]
+size = Vector2(185, 183)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_cic3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xw6pr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_p088t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(22, 8.99998)
+scale = Vector2(122.214, -24.0177)
+zoom = Vector2(0.5, 0.5)
+limit_left = -9999994

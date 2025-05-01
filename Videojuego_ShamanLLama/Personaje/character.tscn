@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://drlgq2sbyh287"]
+
+[ext_resource type="Script" path="res://Personaje/script/character.Scriptgd.gd" id="1_cic3v"]
+[ext_resource type="Texture2D" uid="uid://tnxp33tgd7mg" path="res://images/cubo_blanco_2d.png" id="1_xw6pr"]
+[ext_resource type="Script" path="res://Personaje/vida_jugador.gd" id="2_abnce"]
+[ext_resource type="Texture2D" uid="uid://ccdg77vo0ivj5" path="res://images/cuchillinsss-fotor-bg-remover-20250318152756.png" id="3_npg3f"]
+[ext_resource type="PackedScene" uid="uid://d8sx301hc17v" path="res://cartas.tscn" id="5_h1ae7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf8i3"]
+bg_color = Color(0.260015, 0.606536, 1.75196e-05, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p088t"]
+size = Vector2(185, 183)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75yhr"]
+size = Vector2(110, 172)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_cic3v")
+
+[node name="Cartas" parent="." instance=ExtResource("5_h1ae7")]
+position = Vector2(-72, 279)
+
+[node name="ProgressBar" type="ProgressBar" parent="." groups=["vida_jugador"]]
+offset_left = -225.0
+offset_top = -183.0
+offset_right = -97.0
+offset_bottom = -156.0
+rotation = 0.00977774
+scale = Vector2(4.18901, 2.26139)
+theme_override_colors/font_outline_color = Color(0, 0.941176, 0, 1)
+theme_override_styles/fill = SubResource("StyleBoxFlat_pf8i3")
+value = 100.0
+script = ExtResource("2_abnce")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xw6pr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 1025
+visibility_layer = 1025
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_p088t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(22, 8.99998)
+scale = Vector2(122.214, -24.0177)
+zoom = Vector2(0.5, 0.5)
+limit_left = -9999994
+
+[node name="Area2D" type="Area2D" parent="." groups=["p_punch"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="ataqueone" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(169, -7)
+shape = SubResource("RectangleShape2D_75yhr")
+disabled = true
+
+[node name="ataque" type="Sprite2D" parent="Area2D"]
+visible = false
+position = Vector2(170.032, -1.49012e-08)
+scale = Vector2(0.223873, 0.469039)
+texture = ExtResource("3_npg3f")
+flip_h = true
+
+[connection signal="carta_azul" from="Cartas" to="." method="_on_cartas_carta_azul"]
