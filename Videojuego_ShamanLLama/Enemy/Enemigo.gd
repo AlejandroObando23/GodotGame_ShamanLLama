@@ -82,7 +82,7 @@ func _on_character_body_2d_disminuir_enemigo():
 	
 	if enemigo_acercar and enemigo_stop:
 		
-		get_tree().get_nodes_in_group("vida_enemigo")[0].menos_enemigo_vida(5)
+		get_tree().get_nodes_in_group("vida_enemigo")[0].menos_enemigo_vida(25)
 		
 		enemigo_acercar= false
 

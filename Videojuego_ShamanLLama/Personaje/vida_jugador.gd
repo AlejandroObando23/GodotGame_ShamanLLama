@@ -8,6 +8,8 @@ func _ready():
 	maxvalor= 100
 func menosvida(damage):
 	value-=damage
+	if value ==0:
+		$"..".visible=false
 	
 
 

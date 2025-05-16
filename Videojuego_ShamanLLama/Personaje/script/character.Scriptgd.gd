@@ -26,7 +26,7 @@ func _ready():
 	freeze_timer.one_shot = true
 	freeze_timer.timeout.connect(_unfreeze_character)
 	set_process_input(true)
-	$Cartas.visible=false  # Asegurar que _input se procese
+	$cartas_def.visible=false  # Asegurar que _input se procese
 
 func _physics_process(delta):
 	if is_frozen:
@@ -39,7 +39,7 @@ func _physics_process(delta):
 		handle_jump()
 		atacando()
 		move_and_slide()
-		$Cartas.visible=false
+		$cartas_def.visible=false
 	else:
 		imgataque.visible = true
 		await get_tree().create_timer(0.018).timeout
@@ -106,7 +106,7 @@ func _unfreeze_character():
 	is_frozen = false
 	speed = original_speed
 	if !damage_avoided:
-		get_tree().get_nodes_in_group("vida_jugador")[0].menosvida(25)
+		get_tree().get_nodes_in_group("vida_jugador")[0].menosvida(50)
 		print("jugador dañado")
 	else:
 		print("Daño infligido")
@@ -117,13 +117,19 @@ func _unfreeze_character():
 	can_avoid_damage = false
 
 func _on_character_body_2d_2_parar_principal():
-	$Cartas.visible=true
+	$cartas_def.visible=true
 	freeze_character(1.0)
 
 
 
 
 func _on_cartas_carta_azul():
+	emit_signal("disminuir_carta_azul")
+	damage_avoided = true
+	can_avoid_damage = false
+
+
+func _on_canvas_layer_carta_azul():
 	emit_signal("disminuir_carta_azul")
 	damage_avoided = true
 	can_avoid_damage = false

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxd4ushwklbop"]
+
+[ext_resource type="Script" path="res://Escenas/Cartas_intento/cartaa_holder.gd" id="1_vkpc3"]
+[ext_resource type="Texture2D" uid="uid://b2530rj06imsf" path="res://images/cartas/rect_verde-removebg-preview.png" id="2_gkpl8"]
+
+[node name="card" type="Container"]
+clip_contents = true
+custom_minimum_size = Vector2(170, 80)
+offset_left = -83.0
+offset_top = -116.0
+offset_right = 87.0
+offset_bottom = 108.0
+scale = Vector2(1.10742, 1)
+script = ExtResource("1_vkpc3")
+
+[node name="card" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(17, -12)
+texture = ExtResource("2_gkpl8")

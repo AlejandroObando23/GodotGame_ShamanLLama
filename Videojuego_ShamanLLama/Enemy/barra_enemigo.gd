@@ -11,4 +11,10 @@ func _ready():
 func menos_enemigo_vida(damage):
 	print("No funciona")
 	value-=damage
-	
+	if value == 0:
+		
+		$"..".queue_free()
+		$"..".visible= false
+		$"../Sprite2D".visible=false
+		$"../CollisionShape2D".visible=false
+		print("Listo")

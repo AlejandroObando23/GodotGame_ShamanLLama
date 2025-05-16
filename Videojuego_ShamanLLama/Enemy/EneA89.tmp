@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://yvvk3hjh8gkv"]
+
+[ext_resource type="Script" path="res://Enemy/Enemigo.gd" id="1_2c6fi"]
+[ext_resource type="Texture2D" uid="uid://cnq53p6lc0shh" path="res://images/Cuadro_rojo.png" id="1_uxd2e"]
+[ext_resource type="Script" path="res://Enemy/barra_enemigo.gd" id="2_uqcim"]
+[ext_resource type="PackedScene" uid="uid://dw1d1hiiuma22" path="res://Escenas/EscenaTwo/barra_vida_definitiva.tscn" id="3_r0lft"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71tas"]
+size = Vector2(145, 139)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_2c6fi")
+
+[node name="ProgressBar" type="ProgressBar" parent="." groups=["vida_enemigo"]]
+offset_left = -216.0
+offset_top = -226.0
+offset_right = 132.0
+offset_bottom = -175.0
+scale = Vector2(1.28732, 1)
+value = 100.0
+script = ExtResource("2_uqcim")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-13, -11)
+texture = ExtResource("1_uxd2e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-13.5, -11.5)
+shape = SubResource("RectangleShape2D_71tas")
+
+[node name="Node2D" parent="." instance=ExtResource("3_r0lft")]
+position = Vector2(-9, -124)
+scale = Vector2(0.329336, 0.568446)
+
+[connection signal="less_enemy" from="Node2D" to="." method="_on_node_2d_less_enemy"]
+[connection signal="less_enemy_exited" from="Node2D" to="." method="_on_node_2d_less_enemy_exited"]
+[connection signal="prueba_senial" from="Node2D" to="." method="_on_node_2d_prueba_senial"]

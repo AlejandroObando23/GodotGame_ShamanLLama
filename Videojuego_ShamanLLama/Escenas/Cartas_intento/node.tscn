@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpxsae20ffskx"]
+
+[ext_resource type="Script" path="res://Escenas/Cartas_intento/CardContainer.gd" id="1_yvtmb"]
+
+[node name="Board" type="Node"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CardContainer" type="HBoxContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yvtmb")
+
+[node name="CardHolder" type="Node" parent="UI"]
+
+[connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]

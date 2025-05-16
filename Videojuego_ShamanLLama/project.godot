@@ -15,6 +15,10 @@ run/main_scene="res://Escenas/EscenaOne/Escena1.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameCardTry="*res://game_card_try.gd"
+
 [input]
 
 left={
@@ -49,5 +53,6 @@ evitar={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

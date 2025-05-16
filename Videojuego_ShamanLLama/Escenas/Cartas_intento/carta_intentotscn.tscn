@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://d08t8fsgooan"]
+
+[ext_resource type="Script" path="res://Escenas/Cartas_intento/carta_intento.gd" id="1_ltw2i"]
+[ext_resource type="Texture2D" uid="uid://b2530rj06imsf" path="res://images/cartas/rect_verde-removebg-preview.png" id="1_vwcoe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2a6ns"]
+size = Vector2(80.1032, 70.8229)
+
+[sub_resource type="Animation" id="Animation_34x77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AreaCarta/card:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(86.688, 112)]
+}
+
+[sub_resource type="Animation" id="Animation_6e8qs"]
+resource_name = "deselect"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AreaCarta/card:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-11.684, 8), Vector2(-11.6838, 46.5116)]
+}
+
+[sub_resource type="Animation" id="Animation_7nku4"]
+resource_name = "select"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AreaCarta/card:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-11.6838, 46.5116), Vector2(-11.684, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oyc5m"]
+_data = {
+"RESET": SubResource("Animation_34x77"),
+"deselect": SubResource("Animation_6e8qs"),
+"select": SubResource("Animation_7nku4")
+}
+
+[node name="card" type="Container"]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 85.0
+offset_bottom = 120.0
+scale = Vector2(1.36941, 2.236)
+script = ExtResource("1_ltw2i")
+
+[node name="AreaCarta" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="card" type="Sprite2D" parent="AreaCarta"]
+position = Vector2(86.688, 112)
+rotation = -0.00872665
+scale = Vector2(0.48, 0.35)
+texture = ExtResource("1_vwcoe")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCarta"]
+position = Vector2(41.7355, 46.8783)
+shape = SubResource("RectangleShape2D_2a6ns")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oyc5m")
+}
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="AreaCarta" to="." method="_on_area_carta_input_event"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://drlgq2sbyh287"]
+[gd_scene load_steps=10 format=3 uid="uid://drlgq2sbyh287"]
 
 [ext_resource type="Script" path="res://Personaje/script/character.Scriptgd.gd" id="1_cic3v"]
 [ext_resource type="Texture2D" uid="uid://tnxp33tgd7mg" path="res://images/cubo_blanco_2d.png" id="1_xw6pr"]
 [ext_resource type="Script" path="res://Personaje/vida_jugador.gd" id="2_abnce"]
+[ext_resource type="PackedScene" uid="uid://b5mwqwlqncco5" path="res://Escenas/Cartas_intento/cartas_layer.tscn" id="2_fvhej"]
 [ext_resource type="Texture2D" uid="uid://ccdg77vo0ivj5" path="res://images/cuchillinsss-fotor-bg-remover-20250318152756.png" id="3_npg3f"]
 [ext_resource type="PackedScene" uid="uid://d8sx301hc17v" path="res://cartas.tscn" id="5_h1ae7"]
 
@@ -18,7 +19,10 @@ size = Vector2(110, 172)
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_cic3v")
 
+[node name="cartas_def" parent="." instance=ExtResource("2_fvhej")]
+
 [node name="Cartas" parent="." instance=ExtResource("5_h1ae7")]
+visible = false
 position = Vector2(-72, 279)
 
 [node name="ProgressBar" type="ProgressBar" parent="." groups=["vida_jugador"]]
@@ -64,4 +68,4 @@ scale = Vector2(0.223873, 0.469039)
 texture = ExtResource("3_npg3f")
 flip_h = true
 
-[connection signal="carta_azul" from="Cartas" to="." method="_on_cartas_carta_azul"]
+[connection signal="carta_azul" from="cartas_def" to="." method="_on_canvas_layer_carta_azul"]
