@@ -27,8 +27,8 @@ scale = Vector2(0.383916, -0.634729)
 script = ExtResource("1_imqnu")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 265
-collision_mask = 265
+collision_layer = 268
+collision_mask = 268
 script = ExtResource("1_fho5r")
 
 [node name="barra_vida" type="Sprite2D" parent="Area2D"]
@@ -44,8 +44,8 @@ script = ExtResource("4_3jdft")
 
 [node name="Area2D2" type="Area2D" parent="."]
 position = Vector2(513.133, 4.72643)
-collision_layer = 265
-collision_mask = 265
+collision_layer = 268
+collision_mask = 268
 script = ExtResource("3_b5d1y")
 metadata/_edit_group_ = true
 

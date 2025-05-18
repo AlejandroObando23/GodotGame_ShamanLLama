@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5mwqwlqncco5"]
+[gd_scene load_steps=4 format=3 uid="uid://b5mwqwlqncco5"]
 
 [ext_resource type="Script" path="res://Escenas/Cartas_intento/cartas_layer.gd" id="1_rj83r"]
 [ext_resource type="PackedScene" uid="uid://d08t8fsgooan" path="res://Escenas/Cartas_intento/carta_intentotscn.tscn" id="1_uxjdd"]
+[ext_resource type="PackedScene" uid="uid://cgiuqv86km33t" path="res://cartas/card_blue.tscn" id="2_fhnwy"]
 
 [node name="cartas_def" type="CanvasLayer"]
 script = ExtResource("1_rj83r")
@@ -13,10 +14,14 @@ offset_right = 564.0
 offset_bottom = 397.0
 scale = Vector2(2.02258, 3.44618)
 
+[node name="card_blue" parent="HBoxContainer" instance=ExtResource("2_fhnwy")]
+layout_mode = 2
+
 [node name="card" parent="HBoxContainer" instance=ExtResource("1_uxjdd")]
 layout_mode = 2
 
 [node name="card2" parent="HBoxContainer" instance=ExtResource("1_uxjdd")]
 layout_mode = 2
 
+[connection signal="gui_input" from="HBoxContainer/card_blue" to="." method="_on_card_blue_gui_input"]
 [connection signal="gui_input" from="HBoxContainer/card" to="." method="_on_card_gui_input"]

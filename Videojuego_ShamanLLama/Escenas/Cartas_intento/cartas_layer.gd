@@ -14,3 +14,8 @@ func _process(delta):
 func _on_card_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		emit_signal("carta_azul")
+
+
+func _on_card_blue_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		emit_signal("carta_azul")

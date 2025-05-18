@@ -9,6 +9,9 @@ func _ready():
 func menosvida(damage):
 	value-=damage
 	if value ==0:
+		print("Usted a perdido")
+		get_tree().quit()
+		
 		$"..".visible=false
 	
 

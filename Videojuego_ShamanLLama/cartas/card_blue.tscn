@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d08t8fsgooan"]
+[gd_scene load_steps=8 format=3 uid="uid://cgiuqv86km33t"]
 
-[ext_resource type="Script" path="res://Escenas/Cartas_intento/carta_intento.gd" id="1_ltw2i"]
-[ext_resource type="Texture2D" uid="uid://b2530rj06imsf" path="res://images/cartas/rect_verde-removebg-preview.png" id="1_vwcoe"]
+[ext_resource type="Script" path="res://cartas/card_blue_script.gd" id="1_klilu"]
+[ext_resource type="Texture2D" uid="uid://1s8p41jsktcw" path="res://images/cartas/carta_azul-removebg-preview.png" id="2_cgt41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a6ns"]
 size = Vector2(80.1032, 70.8229)
@@ -15,18 +15,6 @@ tracks/0/path = NodePath("AreaCarta_Azul/card:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(86.688, 112)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AreaCarta/card:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -48,18 +36,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-11.684, 8), Vector2(-11.6838, 46.5116)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AreaCarta/card:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(5, 5), Vector2(5, 50)]
-}
 
 [sub_resource type="Animation" id="Animation_7nku4"]
 resource_name = "select"
@@ -76,18 +52,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-11.6838, 46.5116), Vector2(-11.684, 8)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AreaCarta/card:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(5, 50), Vector2(5, 5)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oyc5m"]
 _data = {
@@ -96,24 +60,23 @@ _data = {
 "select": SubResource("Animation_7nku4")
 }
 
-[node name="card" type="Container"]
+[node name="card_blue" type="Container"]
 custom_minimum_size = Vector2(80, 80)
 offset_right = 85.0
 offset_bottom = 120.0
 scale = Vector2(1.36941, 2.236)
-script = ExtResource("1_ltw2i")
+script = ExtResource("1_klilu")
 
-[node name="AreaCarta" type="Area2D" parent="."]
+[node name="AreaCarta_Azul" type="Area2D" parent="."]
 metadata/_edit_group_ = true
 
-[node name="card" type="Sprite2D" parent="AreaCarta"]
+[node name="card" type="Sprite2D" parent="AreaCarta_Azul"]
 position = Vector2(86.688, 112)
-rotation = -0.00872665
-scale = Vector2(0.48, 0.35)
-texture = ExtResource("1_vwcoe")
+scale = Vector2(0.504369, 0.310753)
+texture = ExtResource("2_cgt41")
 centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCarta"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCarta_Azul"]
 position = Vector2(41.7355, 46.8783)
 shape = SubResource("RectangleShape2D_2a6ns")
 
@@ -125,4 +88,4 @@ libraries = {
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="input_event" from="AreaCarta" to="." method="_on_area_carta_input_event"]
+[connection signal="input_event" from="AreaCarta_Azul" to="." method="_on_area_carta_input_event"]

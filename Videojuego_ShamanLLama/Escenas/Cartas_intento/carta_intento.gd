@@ -4,8 +4,9 @@ var startPosition
 var cardHighLighted = false
 
 func _ready():
-	$AreaCarta/card.position.x = -11.684
-	$AreaCarta/card.position.y = 46.512
+	$AreaCarta/card.position.x = 5
+	$AreaCarta/card.position.y = 50
+	
 
 func _on_mouse_entered():
 	$Anim.play("select")
