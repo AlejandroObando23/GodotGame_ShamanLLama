@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed: float = -70.0
+var speed: float = -900.0
 var limit_left: float = -30.0
 var limit_right: float = 490.0
 var dectector: bool= false

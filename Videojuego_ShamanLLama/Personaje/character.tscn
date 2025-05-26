@@ -69,3 +69,4 @@ texture = ExtResource("3_npg3f")
 flip_h = true
 
 [connection signal="carta_azul" from="cartas_def" to="." method="_on_canvas_layer_carta_azul"]
+[connection signal="carta_verde" from="cartas_def" to="." method="_on_cartas_def_carta_verde"]

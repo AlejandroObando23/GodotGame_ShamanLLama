@@ -11,7 +11,12 @@ var enemigo_acercar : bool = false
 var activar_col_enemy : bool = false
 var comando_activado : bool = false
 var entrar_area : bool = false
+var comando_activado_verde: bool = false
+var c_verde: bool = false
+var c_azul: bool = false
 signal parar_principal
+signal sin_atacar
+signal atacar_play
 
 func _ready():
 	original_speed = speed
@@ -75,14 +80,19 @@ func _on_character_body_2d_disminuir_enemigo():
 	print("Disminuyendo")
 	
 	if comando_activado and entrar_area:
-		print("Activadisiiiiiimmmoooo")
+		
 		comando_activado=false
 		enemigo_stop= true
+		
 
 	
-	if enemigo_acercar and enemigo_stop:
-		
-		get_tree().get_nodes_in_group("vida_enemigo")[0].menos_enemigo_vida(25)
+	if enemigo_acercar and enemigo_stop :
+		if c_verde:
+			get_tree().get_nodes_in_group("vida_enemigo")[0].menos_enemigo_vida(25)
+			c_verde=false
+		elif c_azul:
+			get_tree().get_nodes_in_group("vida_enemigo")[0].menos_enemigo_vida(50)
+			c_azul=false
 		
 		enemigo_acercar= false
 
@@ -92,6 +102,7 @@ func _input(event):
 	
 func _on_node_2d_less_enemy():
 	entrar_area= true
+	emit_signal("atacar_play")
 
 	
 
@@ -102,8 +113,15 @@ func _on_node_2d_less_enemy_exited():
 	entrar_area= false
 	comando_activado=false
 	enemigo_stop=false
+	emit_signal("sin_atacar")
 
 
 func _on_character_body_2d_disminuir_carta_azul():
-	print("Has seleccionado la carta azul")
+	
 	comando_activado=true
+	c_azul=true
+
+
+func _on_character_body_2d_disminuir_carta_verde():
+	comando_activado=true
+	c_verde=true

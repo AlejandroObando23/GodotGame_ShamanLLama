@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://1s8p41jsktcw" path="res://images/cartas/carta_azul-removebg-preview.png" id="2_cgt41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a6ns"]
-size = Vector2(80.1032, 70.8229)
+size = Vector2(80.1032, 114.49)
 
 [sub_resource type="Animation" id="Animation_34x77"]
 length = 0.001
@@ -77,7 +77,7 @@ texture = ExtResource("2_cgt41")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCarta_Azul"]
-position = Vector2(41.7355, 46.8783)
+position = Vector2(41.7355, 60.8229)
 shape = SubResource("RectangleShape2D_2a6ns")
 
 [node name="Anim" type="AnimationPlayer" parent="."]

@@ -12,12 +12,15 @@ var is_frozen: bool = false
 var original_speed: int
 var can_avoid_damage: bool = false
 var damage_avoided: bool = false
+var danio_player: bool = false
 
 @onready var imgataque = $Area2D/ataque
 @onready var freeze_timer = Timer.new()
 signal disminuir_vida_definitivo
 signal disminuir_enemigo
 signal disminuir_carta_azul
+signal disminuir_carta_verde
+
 
 func _ready():
 	original_speed = speed
@@ -105,11 +108,12 @@ func freeze_character(duration: float = 3.0):
 func _unfreeze_character():
 	is_frozen = false
 	speed = original_speed
-	if !damage_avoided:
-		get_tree().get_nodes_in_group("vida_jugador")[0].menosvida(50)
-		print("jugador dañado")
+	if !danio_player:
+		get_tree().get_nodes_in_group("vida_jugador")[0].menosvida(25)
+		
+		danio_player=false
 	else:
-		print("Daño infligido")
+		
 		emit_signal("disminuir_enemigo")
 		
 		
@@ -127,9 +131,29 @@ func _on_cartas_carta_azul():
 	emit_signal("disminuir_carta_azul")
 	damage_avoided = true
 	can_avoid_damage = false
+	
 
 
 func _on_canvas_layer_carta_azul():
 	emit_signal("disminuir_carta_azul")
 	damage_avoided = true
 	can_avoid_damage = false
+	
+
+
+func _on_cartas_def_carta_verde():
+	emit_signal("disminuir_carta_verde")
+	damage_avoided = true
+	can_avoid_damage = false
+	
+
+
+func _on_character_body_2d_2_sin_atacar():
+	danio_player=false
+	
+
+
+func _on_character_body_2d_2_atacar_play():
+	danio_player=true
+	
+	

@@ -9,7 +9,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func menos_enemigo_vida(damage):
-	print("No funciona")
+	
 	value-=damage
 	if value == 0:
 		
