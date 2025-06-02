@@ -53,13 +53,13 @@ func handle_wall_collision():
 		$Sprite2D.flip_h = !is_moving_left
 
 func freeze_enemy():
-	if is_frozen: return  # Evitar múltiples congelamientos
-	
-	
+	if is_frozen:
+		freeze_timer.stop()  # Detén el timer actual si está en marcha
+
 	is_frozen = true
 	speed = 0
 	velocity = Vector2.ZERO
-	freeze_timer.start()  # Inicia el contador de 3 segundos
+	freeze_timer.start()  # Inicia el temporizador (para 1 segundo por si no elige carta)  # Inicia el contador de 3 segundos
 
 func _unfreeze_enemy():
 	is_frozen = false
@@ -78,13 +78,21 @@ func _on_node_2d_prueba_senial():
 
 func _on_character_body_2d_disminuir_enemigo():
 	print("Disminuyendo")
-	
+	if c_verde:
+		get_tree().get_nodes_in_group("vida_enemigo")[0].menos_enemigo_vida(25)
+		c_verde=false
+	elif c_azul:
+		get_tree().get_nodes_in_group("vida_enemigo")[0].menos_enemigo_vida(50)
+		c_azul=false
 	if comando_activado and entrar_area:
 		
 		comando_activado=false
 		enemigo_stop= true
 		
-
+func unfreeze_now():
+	if is_frozen:
+		freeze_timer.stop()  # Detén el timer para evitar que llame a _unfreeze_enemy luego
+		_unfreeze_enemy()
 	
 	if enemigo_acercar and enemigo_stop :
 		if c_verde:
@@ -120,8 +128,14 @@ func _on_character_body_2d_disminuir_carta_azul():
 	
 	comando_activado=true
 	c_azul=true
+	unfreeze_now()
+	
 
 
 func _on_character_body_2d_disminuir_carta_verde():
+	
 	comando_activado=true
 	c_verde=true
+	unfreeze_now()
+	
+	

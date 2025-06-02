@@ -11,7 +11,7 @@ var facing_direction = 1
 var is_frozen: bool = false
 var original_speed: int
 var can_avoid_damage: bool = false
-var damage_avoided: bool = false
+var damage_avoided: bool = true
 var danio_player: bool = false
 
 @onready var imgataque = $Area2D/ataque
@@ -25,7 +25,7 @@ signal disminuir_carta_verde
 func _ready():
 	original_speed = speed
 	add_child(freeze_timer)
-	freeze_timer.wait_time = 3.0
+	freeze_timer.wait_time = 6.0
 	freeze_timer.one_shot = true
 	freeze_timer.timeout.connect(_unfreeze_character)
 	set_process_input(true)
@@ -48,7 +48,7 @@ func _physics_process(delta):
 		await get_tree().create_timer(0.018).timeout
 		imgataque.visible = false
 		atacar = false
-		
+
 
 func _input(event):
 	if Input.is_action_pressed("evitar"):
@@ -92,15 +92,14 @@ func atacando():
 		imgataque.position.x = abs(imgataque.position.x) * facing_direction
 		imgataque.flip_h = facing_direction < 0
 
-func freeze_character(duration: float = 3.0):
+func freeze_character(duration: float = 6.0):
 	if is_frozen: return
 	
 	
 	is_frozen = true
 	speed = 0
 	velocity = Vector2.ZERO
-	can_avoid_damage = true
-	damage_avoided = false
+
 	
 	freeze_timer.wait_time = duration
 	freeze_timer.start()
@@ -113,7 +112,7 @@ func _unfreeze_character():
 		
 		danio_player=false
 	else:
-		
+		print("el enemigo recibio danio")
 		emit_signal("disminuir_enemigo")
 		
 		
@@ -123,7 +122,11 @@ func _unfreeze_character():
 func _on_character_body_2d_2_parar_principal():
 	$cartas_def.visible=true
 	freeze_character(1.0)
-
+	
+func unfreeze_now():
+	if is_frozen:
+		freeze_timer.stop()
+		_unfreeze_character()
 
 
 
@@ -139,12 +142,24 @@ func _on_canvas_layer_carta_azul():
 	damage_avoided = true
 	can_avoid_damage = false
 	
+	
+	$cartas_def.visible = false
+	unfreeze_now()
+
+	
+
+	
 
 
 func _on_cartas_def_carta_verde():
 	emit_signal("disminuir_carta_verde")
 	damage_avoided = true
 	can_avoid_damage = false
+	
+	$cartas_def.visible = false
+	unfreeze_now()
+	
+	
 	
 
 
@@ -154,6 +169,13 @@ func _on_character_body_2d_2_sin_atacar():
 
 
 func _on_character_body_2d_2_atacar_play():
-	danio_player=true
+	print("podeis atacar")
+	if damage_avoided== false:
+		danio_player=false
+		print("Condicion pero ataque no")
+	else:
+		print("atacarsssssssssssssss")
+		danio_player=true
+	
 	
 	
